@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Domo Task Board</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="page">
+
+  <header class="page-header">
+    <h1>Domo Task Board</h1>
+    <p class="tagline">A tiny task board frontend for practicing Docker builds.</p>
+  </header>
+
+  <main>
+
+    <section class="panel" aria-labelledby="status-heading">
+      <h2 id="status-heading">Status</h2>
+      <div class="status-bar" id="status-bar">
+        <span class="badge badge-unknown" id="badge-postgres">
+          <span class="dot" aria-hidden="true"></span>
+          <span>Postgres: checking&hellip;</span>
+        </span>
+        <span class="badge badge-unknown" id="badge-redis">
+          <span class="dot" aria-hidden="true"></span>
+          <span>Redis: checking&hellip;</span>
+        </span>
+      </div>
+      <p class="error-message" id="status-error" role="alert" hidden></p>
+    </section>
+
+    <section class="panel" aria-labelledby="tasks-heading">
+      <h2 id="tasks-heading">Tasks</h2>
+
+      <form id="add-task-form" class="add-task-form">
+        <label for="task-title" class="sr-only">New task title</label>
+        <input
+          type="text"
+          id="task-title"
+          name="title"
+          placeholder="What needs doing?"
+          autocomplete="off"
+          required
+        >
+        <button type="submit">Add task</button>
+      </form>
+
+      <p class="error-message" id="tasks-error" role="alert" hidden></p>
+
+      <div class="list-meta">
+        <span id="cache-indicator" class="cache-indicator" hidden></span>
+      </div>
+
+      <ul class="task-list" id="task-list" aria-live="polite"></ul>
+      <p class="empty-state" id="task-empty" hidden>No tasks yet. Add one above.</p>
+    </section>
+
+    <section class="panel" aria-labelledby="stats-heading">
+      <div class="panel-header-row">
+        <h2 id="stats-heading">Stats</h2>
+        <button type="button" id="refresh-stats" class="secondary">Refresh</button>
+      </div>
+      <p class="error-message" id="stats-error" role="alert" hidden></p>
+      <dl class="stats-grid" id="stats-grid">
+        <div class="stat">
+          <dt>Visits</dt>
+          <dd id="stat-visits">&ndash;</dd>
+        </div>
+        <div class="stat">
+          <dt>Task count</dt>
+          <dd id="stat-taskcount">&ndash;</dd>
+        </div>
+        <div class="stat">
+          <dt>Served by</dt>
+          <dd id="stat-hostname">&ndash;</dd>
+        </div>
+        <div class="stat">
+          <dt>API version</dt>
+          <dd id="stat-version">&ndash;</dd>
+        </div>
+        <div class="stat">
+          <dt>Uptime</dt>
+          <dd id="stat-uptime">&ndash;</dd>
+        </div>
+      </dl>
+    </section>
+
+  </main>
+
+  <footer class="page-footer">
+    <p>Build version: <span id="build-version">__BUILD_VERSION__</span></p>
+  </footer>
+
+</div>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>
