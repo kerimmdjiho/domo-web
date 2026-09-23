@@ -23,7 +23,8 @@ write yourself (see below).
 
 ## Build-time variables
 
-`scripts/build.js` copies `src/` into `dist/` and substitutes two placeholders
+Set them in the shell or copy `.env.example` to `.env` (loaded automatically
+by `npm run build` / `npm run serve`; shell values win). `scripts/build.js` copies `src/` into `dist/` and substitutes two placeholders
 found in the source files:
 
 | Variable        | Default | Effect                                                                 |
@@ -36,7 +37,7 @@ found in the source files:
 This repo intentionally ships with no Dockerfile, no `.dockerignore`, no
 nginx config, and no compose file. That's the point — write them yourself:
 
-- Write a **multi-stage Dockerfile**: a `node:20-alpine` build stage that
+- Write a **multi-stage Dockerfile**: a `node:22-alpine` build stage that
   runs `npm run build`, and an `nginx:alpine` runtime stage that serves the
   resulting `dist/`.
 - Pass `API_URL` and `BUILD_VERSION` into the build stage as `ARG`s (with
